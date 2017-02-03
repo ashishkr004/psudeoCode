@@ -1,0 +1,137 @@
+node:
+	int value
+	node leftChild=NULL
+	node rightChild=NULL
+	node parent=Null
+
+bst:
+	node root
+	
+	insert(n):
+		if(number of node  == 0){
+			root.value=n
+		}
+		else{
+			node currentNode=root
+			while(true){
+				if(n<=currentNode.value && current.leftChild==NULL){
+					node temp
+					temp.value=n
+					temp.parent=currentNode
+					currentNode.leftChild=temp
+					break
+				}
+				else if(n<=currentNode.value){
+					currentNode=currentNode.leftChild
+				}
+				else if(currentNode.rightChild==Null){
+					node temp
+					temp.value=n
+					temp.parent=currentNode
+					currentNode.rightChild=temp
+					break
+				}
+				else{
+					currentNode=currentNode.rightChild
+				}
+			}
+		}
+
+	minimum:
+		node current
+		while(current.leftChild!=Null){
+			current=current.leftChild
+		}
+		return current.value
+
+	kth_smallest:
+
+	search(node x):
+		int n = x.value
+		node current=root
+		while(true){
+			if(n==current.value){
+				break
+			}
+			else if(n<current.value){
+				current=current.leftChild
+			}
+			else{
+				current=current.rightChild
+			}
+		}
+		return current
+
+	delete(node x):
+		node current=search(x)
+
+		if(current==root){
+			root.value=NULL
+		}
+		else if(current.leftChild==NULL || current.rightChild==NULL)
+			if(current.leftChild==NULL && current.rightChild==NULL){
+				if((current.parent).leftChild==x){
+					(current.parent).leftChild==NULL
+				}
+				else{
+					(current.parent).rightChild==NULL
+				}
+			}
+			else{
+				if(current.leftChild==NULL){
+					if((current.parent).leftChild==x){
+						(current.parent).leftChild=current.rightchild
+					}
+					else{
+						(current.parent).rightChild=current.rightChild
+					}
+				}
+				else{
+					if((current.parent).leftChild==x){
+						(current.parent).leftChild=current.leftChild
+					}
+					else{
+						(current.parent).rightChild=current.leftChild
+					}
+				}
+			}
+		else{
+			node temp=current.rightChild
+			while(temp.leftChild!=NULL){
+				temp=temp.leftChild
+			}
+			if((current.parent).leftChild==current){
+				(current.parent).leftChild=temp
+				temp.parent=current.parent
+				temp.leftChild = current.leftChild
+				temp.rightChild = current.righChild
+			}
+			else{
+				(current.parent).rightChild=temp
+				temp.parent=current.parent
+				temp.leftChild = current.leftChild
+				temp.rightChild = current.righChild
+			}
+		}
+
+
+		inorderTraversal(node x, int arr[]):
+			if(x==NULL){
+				return;
+			}
+
+			inorderTraversal(x.leftChild, arr)
+			arr.push(x.value)
+			inorderTraversal(x.rightChild,arr)
+
+
+		kth_smallest(k):
+			int arr[]
+			inorderTraversal(root,arr)
+			return arr[k-1]
+
+
+
+
+
+
